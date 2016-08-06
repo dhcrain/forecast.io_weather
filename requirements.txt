@@ -1,0 +1,10 @@
+click==6.6
+decorator==4.0.10
+geocoder==1.15.1
+get==0.0.13
+post==0.0.8
+public==0.0.34
+query-string==0.0.8
+ratelim==0.1.6
+requests==2.10.0
+six==1.10.0
