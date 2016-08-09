@@ -14,8 +14,8 @@ lng = g.latlng[1]
 
 url = "https://api.forecast.io/forecast/{}/{},{}".format(api_key, lat, lng)
 response = requests.get(url).json()
-print('')
-print(response['daily']['summary'])
+
+print("\n" + response['daily']['summary'])
 for day in response['daily']['data']:
     time = datetime.datetime.fromtimestamp(int(day['time'])).strftime('%A %B %-d')
     summary = day['summary']

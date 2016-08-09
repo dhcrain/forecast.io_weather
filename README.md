@@ -1,4 +1,4 @@
-# cli-weather
+# forecast.io_weather
 
 CLI to get weekly forecast from forecast.io
 
