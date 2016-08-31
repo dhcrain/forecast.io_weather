@@ -6,7 +6,7 @@ from tabulate import tabulate
 
 forecast_api_key = os.environ['forecast_api']
 
-print("Enter a location, Zip Code (28768) * OR * City, State (Greenville, SC)")
+print("Enter a location, Zip Code (28768) *OR* City, State (Greenville, SC)")
 location = input("Location? ")
 g = geocoder.google(location)
 
@@ -20,7 +20,7 @@ for day in response['daily']['data']:
     max_temp = str(int(day['temperatureMax'])) + "°F"
     max_temp_time = "at " + str(datetime.datetime.fromtimestamp(int(day['temperatureMaxTime'])).strftime('%-I%p'))
     min_temp = str(int(day['temperatureMin'])) + "°F"
-    min_temp_time ="at " + str(datetime.datetime.fromtimestamp(int(day['temperatureMinTime'])).strftime('%-I%p'))
+    min_temp_time = "at " + str(datetime.datetime.fromtimestamp(int(day['temperatureMinTime'])).strftime('%-I%p'))
     percip_chance = str(int(day['precipProbability'] * 100)) + "%"
     try:
         percip_type = "of " + day['precipType']
@@ -32,6 +32,7 @@ for day in response['daily']['data']:
     table_day = [time, summary, max_temp, max_temp_time, min_temp, min_temp_time, percip_chance, percip_type]
     table_week.append(table_day)
 
+table_week[0][0] = "* Today *"
 
-headers = ["", "", "hi", "", "lo", "", "percip", ""]
-print(tabulate(table_week, headers=(headers), tablefmt="psql"))
+headers = ["", "", "HI", "", "LO", "", "", ""]
+print(tabulate(table_week, headers=(headers), tablefmt="simple"))
