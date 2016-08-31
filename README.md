@@ -8,7 +8,7 @@ It's free for 1000 API calls per day.
 Can add it to your environment variable or just paste it into forecast.py
 
 Will need to:
-`pip install requests geocoder`
+`pip install requirements.txt`
 
 Then:
 `python forecast.py`
