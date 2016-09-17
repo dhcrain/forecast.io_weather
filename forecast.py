@@ -4,6 +4,7 @@ import requests
 import geocoder
 from tabulate import tabulate
 
+""" Put your forecast.io API key here """
 forecast_api_key = os.environ['forecast_api']
 
 """ UNITS "us" for °F or "si" for °C """
@@ -17,11 +18,6 @@ g = geocoder.ip('me')
 # location = input("Location? ")
 # g = geocoder.google(location)
 
-if units == "us":
-    unit_letter = "°F"
-else:
-    unit_letter = "°C"
-
 
 class colors:
     PINK = '\033[95m'
@@ -32,6 +28,11 @@ class colors:
     BOLD = '\033[1m'
     UNDERLINE = '\033[4m'
     ENDC = '\033[0m'
+
+if units == "us":
+    unit_letter = "°F"
+else:
+    unit_letter = "°C"
 
 
 def readable_time(time):
@@ -45,7 +46,6 @@ def temp_format(color, number):
 def get_weather():
     url = "https://api.forecast.io/forecast/{}/{},{}?exclude=minutely,hourly,alerts,flags?units={}".format(forecast_api_key, g.latlng[0], g.latlng[1], units)
     response = requests.get(url).json()
-    # print(response)
     table_week = []
     for day in response['daily']['data']:
         date = datetime.datetime.fromtimestamp(int(day['time'])).strftime('%a %b %-d')

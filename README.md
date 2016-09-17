@@ -1,4 +1,4 @@
-# forecast.io_weather
+# forecast.io Weather
 
 CLI to get weekly forecast from forecast.io
 
@@ -11,13 +11,15 @@ Can add it to your environment variable or just paste it in for the value of `fo
 - Get location from your ip address
 - Enter location manually, zip or city, state
 
-Just comment out / delete the option that you don't want to use. 
+Just comment out / delete the option that you don't want to use.
 
-Will need to:
-`pip install requirements.txt`
+__Units__
+- Set `units = ` "us" for °F or "si" for °C
 
-Then:
-`python forecast.py`
+### To run:
+- `git clone https://github.com/dhcrain/forecast.io_weather.git`
+- `pip install requirements.txt`
+- `python forecast.py`
 
 
-Tested in Python 3.5.1
+Tested in Python 3.5.1 / OSX
