@@ -4,6 +4,10 @@ import requests
 import geocoder
 from tabulate import tabulate
 
+"""
+Powered by Dark Sky - https://darksky.net/poweredby/
+"""
+
 """ Put your forecast.io API key here """
 forecast_api_key = os.environ['forecast_api']
 
@@ -44,7 +48,7 @@ def temp_format(color, number):
 
 
 def get_weather():
-    url = "https://api.forecast.io/forecast/{}/{},{}?exclude=minutely,hourly,alerts,flags?units={}".format(forecast_api_key, g.latlng[0], g.latlng[1], units)
+    url = "https://api.darksky.net/forecast/{}/{},{}?exclude=minutely,hourly,alerts,flags?units={}".format(forecast_api_key, g.latlng[0], g.latlng[1], units)
     response = requests.get(url).json()
     table_week = []
     for day in response['daily']['data']:

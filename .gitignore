@@ -1,3 +1,7 @@
+test.py
+weather.py
+setup.py
+
 .DS_Store
 # Byte-compiled / optimized / DLL files
 __pycache__/
