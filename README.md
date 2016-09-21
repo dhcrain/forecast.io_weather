@@ -1,11 +1,11 @@
-# forecast.io Weather
+# Weather from Dark Sky API
 
 CLI to get weekly forecast from forecast.io
 
-You will need an API key from https://developer.forecast.io/
-It's free for 1000 API calls per day.
+You will need an API key from https://darksky.net/dev/  
+It's __free__ for 1000 API calls per day.
 
-Can add it to your environment variable or just paste it in for the value of `forecast_api_key`
+Can add it to your environment variable or just paste it in for the value of `darksky_api_key`
 
 ## Options
 - Get location from your ip address
@@ -22,5 +22,5 @@ __Units__
 - `python forecast.py`
 
 
-Tested in Python 3.5.1 / OSX
+Tested in Python 3.5.1 / OSX  
 Powered by Dark Sky - https://darksky.net/poweredby/
