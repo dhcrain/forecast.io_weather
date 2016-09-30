@@ -3,6 +3,7 @@ import datetime
 import requests
 import geocoder
 from tabulate import tabulate
+import click
 
 """
 Powered by Dark Sky - https://darksky.net/poweredby/
@@ -13,14 +14,6 @@ darksky_api_key = os.environ['forecast_api']
 
 """ UNITS "us" for °F or "si" for °C """
 units = "us"
-
-""" To get Location automatically from ip address """
-g = geocoder.ip('me')
-
-""" To get manual input for location """
-# print("Enter a location, Zip Code (28768) *OR* City, State (Greenville, SC)")
-# location = input("Location? ")
-# g = geocoder.google(location)
 
 
 class colors:
@@ -33,10 +26,7 @@ class colors:
     UNDERLINE = '\033[4m'
     ENDC = '\033[0m'
 
-if units == "us":
-    unit_letter = "°F"
-else:
-    unit_letter = "°C"
+unit_letter = "°F" if units == "us" else "°C"
 
 
 def readable_time(time):
@@ -47,7 +37,15 @@ def temp_format(color, number):
     return color + str(int(number)) + unit_letter + colors.ENDC
 
 
-def get_weather():
+@click.command()
+@click.option('--location', '-l', help='Enter a location, Zip Code (28768) *OR* City, State (Greenville, SC)')
+def get_weather(location):
+
+    if location is None:
+        g = geocoder.ip('me')
+    else:
+        g = geocoder.google(location)
+
     url = "https://api.darksky.net/forecast/{}/{},{}?exclude=minutely,hourly,alerts,flags?units={}".format(darksky_api_key, g.latlng[0], g.latlng[1], units)
     response = requests.get(url).json()
     table_week = []
@@ -68,7 +66,7 @@ def get_weather():
 
     table_week[0][0] = colors.GREEN + "* Today *" + colors.ENDC
     headers = ["", "", "HI", "at", "LO", "at", "", ""]
-    print("\nForecast for: {}, {}".format(g.city, g.state))
+    print(colors.UNDERLINE + "\nForecast for" + colors.ENDC + ": {}, {}".format(g.city, g.state))
     print(colors.UNDERLINE + "Current Temp" + colors.ENDC + ": " + str(int(response['currently']['temperature'])) + unit_letter)
     print("\n" + colors.BOLD + response['daily']['summary'] + colors.ENDC)
     print(tabulate(table_week, headers=(headers), tablefmt="simple"))

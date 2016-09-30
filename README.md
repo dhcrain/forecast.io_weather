@@ -17,9 +17,14 @@ __Units__
 - Set `units = ` "us" for °F or "si" for °C
 
 ### To run:
+- Create Python 3 virtual environment
 - `git clone https://github.com/dhcrain/forecast.io_weather.git`
 - `pip install requirements.txt`
 - `python forecast.py`
+    - this will get your location from your ip address
+- `python forecast.py -l <location>`
+    - tell the program what location you want to see the forecast
+    - <location> can be a zip code, city & state, specific address
 
 
 Tested in Python 3.5.1 / OSX  
