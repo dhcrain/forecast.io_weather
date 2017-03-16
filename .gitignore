@@ -1,6 +1,8 @@
 test.py
 weather.py
 setup.py
+.envrc
+.direnv/
 
 .DS_Store
 # Byte-compiled / optimized / DLL files

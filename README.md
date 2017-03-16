@@ -19,7 +19,7 @@ __Units__
 ### To run:
 - Create Python 3 virtual environment
 - `git clone https://github.com/dhcrain/forecast.io_weather.git`
-- `pip install requirements.txt`
+- `pip install -r requirements.txt`
 - `python forecast.py`
     - this will get your location from your ip address
 - `python forecast.py -l <location>`
