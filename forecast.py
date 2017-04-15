@@ -2,7 +2,7 @@ import os
 import datetime
 import requests
 import geocoder
-from terminaltables import AsciiTable, DoubleTable, SingleTable
+from terminaltables import AsciiTable
 import click
 
 """
@@ -65,14 +65,13 @@ def get_weather(location):
         table_day = (date, summary, max_temp, max_temp_time, min_temp, min_temp_time, percip_chance, percip_type)
         table_week += (table_day,)
 
-
-    # table_week[1][0] = colors.GREEN + "* Today *" + colors.ENDC
-    print(table_week)
+    table_week[1][0] = colors.GREEN + "* Today *" + colors.ENDC
+    
     print(colors.UNDERLINE + "\nForecast for" + colors.ENDC + ": {}, {}".format(g.city, g.state))
     print(colors.UNDERLINE + "Current Temp" + colors.ENDC + ": " + str(int(response['currently']['temperature'])) + unit_letter)
     print("\n" + colors.BOLD + response['daily']['summary'] + colors.ENDC)
 
-    title = 'Jetta SportWagen'
+    title = " {}, {} - Current Temp: {} ".format(g.city, g.state, (str(int(response['currently']['temperature'])) + unit_letter))
 
     # AsciiTable
     table_instance = AsciiTable(table_week, title)
