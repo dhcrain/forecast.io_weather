@@ -11,8 +11,6 @@ Can add it to your environment variable or just paste it in for the value of `da
 - Get location from your ip address
 - Enter location manually, zip or city, state
 
-Just comment out / delete the option that you don't want to use.
-
 __Units__
 - Set `units = ` "us" for °F or "si" for °C
 
@@ -20,6 +18,7 @@ __Units__
 - Create Python 3 virtual environment
 - `git clone https://github.com/dhcrain/forecast.io_weather.git`
 - `pip install -r requirements.txt`
+- Put forecast.io API key in file or as an environment variable
 - `python forecast.py`
     - this will get your location from your ip address
 - `python forecast.py -l <location>`
@@ -27,5 +26,5 @@ __Units__
     - <location> can be a zip code, city & state, specific address
 
 
-Tested in Python 3.5.1 / OSX  
+Tested in Python 3.6.1 / OSX  
 Powered by Dark Sky - https://darksky.net/poweredby/
