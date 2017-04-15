@@ -26,6 +26,7 @@ class colors:
     UNDERLINE = '\033[4m'
     ENDC = '\033[0m'
 
+
 unit_letter = "°F" if units == "us" else "°C"
 
 
@@ -70,6 +71,7 @@ def get_weather(location):
     print(colors.UNDERLINE + "Current Temp" + colors.ENDC + ": " + str(int(response['currently']['temperature'])) + unit_letter)
     print("\n" + colors.BOLD + response['daily']['summary'] + colors.ENDC)
     print(tabulate(table_week, headers=(headers), tablefmt="simple"))
+
 
 if __name__ == '__main__':
     get_weather()
