@@ -47,9 +47,10 @@ def get_weather(location):
     else:
         g = geocoder.google(location)
 
-    url = "https://api.darksky.net/forecast/{}/{},{}?exclude=minutely,hourly,alerts,flags?units={}".format(darksky_api_key, g.latlng[0], g.latlng[1], units)
+    url = "https://api.darksky.net/forecast/{}/{},{}?exclude=minutely,hourly,alerts,flags?units={}".format(darksky_api_key, g.lat, g.lng, units)
     response = requests.get(url).json()
     table_week = [["", "", "HI", "at", "LO", "at", "", ""]]
+
     for day in response['daily']['data']:
         date = datetime.datetime.fromtimestamp(int(day['time'])).strftime('%a %b %-d')
         summary = day['summary']
@@ -65,18 +66,17 @@ def get_weather(location):
         table_day = [date, summary, max_temp, max_temp_time, min_temp, min_temp_time, percip_chance, percip_type]
         table_week.append(table_day)
 
-    table_week[1][0] = colors.GREEN + "* Today *" + colors.ENDC
-    print(colors.UNDERLINE + "\nForecast for" + colors.ENDC + ": {}, {}".format(g.city, g.state))
-    print(colors.UNDERLINE + "Current Temp" + colors.ENDC + ": " + str(int(response['currently']['temperature'])) + unit_letter)
-    print("\n" + colors.BOLD + response['daily']['summary'] + colors.ENDC)
+    table_week[1][0] = colors.BOLD + colors.GREEN + "* Today *" + colors.ENDC
 
-    title = " {}, {} - Current Temp: {} ".format(g.city, g.state, (str(int(response['currently']['temperature'])) + unit_letter))
+    title = colors.BOLD + " {}, {} - Current Temp: {} ".format(g.city, g.state, (str(int(response['currently']['temperature'])) + unit_letter)) + colors.ENDC
 
     # AsciiTable
     table_instance = AsciiTable(table_week, title)
     table_instance.justify_columns[2] = 'right'
-    print(table_instance.table)
 
+    # Output
+    print("\n" + colors.BOLD + response['daily']['summary'] + colors.ENDC + "\n")
+    print(table_instance.table)
 
 
 if __name__ == '__main__':
