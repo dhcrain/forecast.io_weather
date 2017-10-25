@@ -1,4 +1,4 @@
-geocoder==1.15.1
+geocoder==1.32.1
 requests==2.11.0
 terminaltables==3.1.0
 click==6.6
