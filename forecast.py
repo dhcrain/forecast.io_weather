@@ -10,10 +10,11 @@ Powered by Dark Sky - https://darksky.net/poweredby/
 """
 
 """ Put your forecast.io API key here """
-darksky_api_key = os.environ['forecast_api']
+DARKSKY_API_KEY = os.environ['forecast_api']
 
 """ UNITS "us" for °F or "si" for °C """
-units = "us"
+UNITS = "us"
+UNIT_LETTER = "°F" if UNITS == "us" else "°C"
 
 
 class colors:
@@ -27,19 +28,16 @@ class colors:
     ENDC = '\033[0m'
 
 
-unit_letter = "°F" if units == "us" else "°C"
-
-
 def readable_time(time):
     return str(datetime.datetime.fromtimestamp(int(time)).strftime('%-I%p')).lower()
 
 
 def temp_format(color, number):
-    return color + str(int(number)) + unit_letter + colors.ENDC
+    return color + str(int(number)) + UNIT_LETTER + colors.ENDC
 
 
 @click.command()
-@click.option('--location', '-l', help='Enter a location, Zip Code (28768) *OR* City, State (Greenville, SC)')
+@click.option('--location', '-l', help='Enter a location, Zip Code (28768)')
 def get_weather(location):
 
     if location is None:
@@ -47,7 +45,7 @@ def get_weather(location):
     else:
         g = geocoder.google(location)
 
-    url = "https://api.darksky.net/forecast/{}/{},{}?exclude=minutely,hourly,alerts,flags?units={}".format(darksky_api_key, g.lat, g.lng, units)
+    url = "https://api.darksky.net/forecast/{}/{},{}?exclude=minutely,hourly,alerts,flags?UNITS={}".format(DARKSKY_API_KEY, g.lat, g.lng, UNITS)
     response = requests.get(url).json()
     table_week = [["", "", "HI", "at", "LO", "at", "", ""]]
 
@@ -68,7 +66,7 @@ def get_weather(location):
 
     table_week[1][0] = colors.BOLD + colors.GREEN + "* Today *" + colors.ENDC
 
-    title = colors.BOLD + " {}, {} - Current Temp: {} ".format(g.city, g.state, (str(int(response['currently']['temperature'])) + unit_letter)) + colors.ENDC
+    title = colors.BOLD + " {}, {} - Current Temp: {} ".format(g.city, g.state, (str(int(response['currently']['temperature'])) + UNIT_LETTER)) + colors.ENDC
 
     # AsciiTable
     table_instance = AsciiTable(table_week, title)

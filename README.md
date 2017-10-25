@@ -1,6 +1,6 @@
 # Weather from Dark Sky API
 
-CLI to get weekly forecast from forecast.io
+## CLI to get weekly forecast from forecast.io
 
 You will need an API key from https://darksky.net/dev/  
 It's __free__ for 1000 API calls per day.
@@ -9,7 +9,7 @@ Can add it to your environment variable or just paste it in for the value of `da
 
 ## Options
 - Get location from your ip address
-- Enter location manually, zip or city, state
+- Enter location manually (zip)
 
 __Units__
 - Set `units = ` "us" for °F or "si" for °C
@@ -23,7 +23,7 @@ __Units__
     - this will get your location from your ip address
 - `python forecast.py -l <location>`
     - tell the program what location you want to see the forecast
-    - <location> can be a zip code, city & state, specific address
+    - <location> can be a zip code
 
 
 Tested in Python 3.6.3 / OSX  
