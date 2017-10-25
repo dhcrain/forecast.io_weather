@@ -1,6 +1,6 @@
 # Weather from Dark Sky API
 
-## CLI to get weekly forecast from forecast.io
+## CLI to get weekly forecast from darksky.net
 
 You will need an API key from https://darksky.net/dev/  
 It's __free__ for 1000 API calls per day.
